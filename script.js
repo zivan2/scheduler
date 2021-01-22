@@ -22,12 +22,13 @@ if (!getLocal()) {
             })
         }
         setLocal(schedule)
+        localStorage.setItem('lastDay', moment().format('LLLL'))
     }
 }
 
 $('.save').on('click', function() {
     let time = $(this).attr('id')
-    let msg = $(`textarea#${time}`).val()
+    let msg = $(`#${time} textarea`).val()
     let s = getLocal()
     s.forEach((elem) => {
         if (elem.time == time) {
