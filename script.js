@@ -11,8 +11,18 @@ if (!getLocal()) {
         })
     }
     setLocal(schedule)
+    localStorage.setItem('lastDay', moment().format('LLLL'))
 } else {
-    updateTexts()
+    if (localStorage.getItem('lastDay') != moment().format('LLLL')) {
+        let schedule = []
+        for (let i in times) {
+            schedule.push({
+                time: times[i],
+                message: ''
+            })
+        }
+        setLocal(schedule)
+    }
 }
 
 $('.save').on('click', function() {
